@@ -32,6 +32,7 @@ python manage.py migrate
 
 # Go to shell to check DB
 `python manage.py shell`
+
 `>>> from polls.models import Question`
 
 # Get all records of Question
