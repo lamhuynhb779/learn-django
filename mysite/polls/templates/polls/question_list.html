@@ -1,0 +1,12 @@
+{% extends 'polls/base.html' %}
+
+{% block my-content %}
+    <h2>List Questions:</h2>
+    {% if questions %}
+        {% for q in questions %}
+            <p>{{q.question_text}}</p>
+        {% endfor %}
+    {% else %}
+        <h3 style="color:red;">No data</h3>
+    {% endif %}
+{% endblock %}
