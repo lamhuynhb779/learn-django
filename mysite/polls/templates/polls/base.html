@@ -1,31 +1,12 @@
+<!--Load static-->
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Polls App</title>
-    <style>
-        .header {
-            padding: 30px;
-            background-color: #ccc;
-            color: #FFF;
-        }
-        .menu ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-        }
-
-        .menu ul li {
-            float: left;
-        }
-
-        .menu ul li a {
-            display: block;
-            padding: 8px;
-            background-color: #dddddd;
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'polls/css/style.css' %}">
 </head>
 <body>
     <div class="header">
@@ -33,8 +14,8 @@
     </div>
     <div class="menu">
         <ul>
-            <li><a href="{% url 'index' %}">Home</a></li>
-            <li><a href="{% url 'questions' %}">Question</a></li>
+            <li><a href="{% url 'polls_route:index' %}">Home</a></li>
+            <li><a href="{% url 'polls_route:questions' %}">Question</a></li>
         </ul>
     </div>
     <div class="content">

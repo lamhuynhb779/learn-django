@@ -2,12 +2,12 @@
 
 {% block my-content %}
 <!--    <p><a href="{{ request.META.HTTP_REFERER }}">Back</a></p>-->
-    <p><a href="{% url 'questions' %}">Back</a></p>
+    <p><a href="{% url 'polls_route:questions' %}">Back</a></p>
     <h4>Answer for question:</h4>
     <h5>{{question.question_text}}</h5>
 
     {% if choices %}
-        <form method="post" action="{% url 'save_answer' %}">
+        <form method="post" action="{% url 'polls_route:save_answer' %}">
             <input type="hidden" name="question_input" value="{{question.id}}">
             {% csrf_token %}
             {% for choice in choices %}

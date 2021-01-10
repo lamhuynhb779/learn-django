@@ -2,7 +2,7 @@
 
 {% block my-content %}
 <!--    <p><a href="{{ request.META.HTTP_REFERER }}">Back</a></p>-->
-    <p><a href="{% url 'questions' %}">Back</a></p>
+    <p><a href="{% url 'polls_route:questions' %}">Back</a></p>
 
     <h4>Question:</h4>
     <h5>{{question.question_text}}</h5>
