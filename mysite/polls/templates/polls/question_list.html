@@ -4,7 +4,7 @@
     <h2>List Questions:</h2>
     {% if questions %}
         {% for q in questions %}
-            <p><a href="{% url 'answer_question' q.id %}">{{q.question_text}}</a></p>
+            <p><a href="{% url 'polls_route:answer_question' q.id %}">{{q.question_text}}</a></p>
         {% endfor %}
     {% else %}
         <h3 style="color:red;">No data</h3>

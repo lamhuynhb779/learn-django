@@ -1,6 +1,9 @@
 from django.urls import path
 from . import views
 
+# This is namespace url
+app_name = 'polls_route'
+
 urlpatterns = [
     path('', views.index, name="index"),
     path('questions', views.showQuestions, name="questions"),
