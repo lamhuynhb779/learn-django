@@ -1,0 +1,23 @@
+{% extends 'polls/base.html' %}
+
+{% block my-content %}
+<!--    <p><a href="{{ request.META.HTTP_REFERER }}">Back</a></p>-->
+    <p><a href="{% url 'questions' %}">Back</a></p>
+    <h4>Answer for question:</h4>
+    <h5>{{question.question_text}}</h5>
+
+    {% if choices %}
+        <form method="post" action="{% url 'save_answer' %}">
+            <input type="hidden" name="question_input" value="{{question.id}}">
+            {% csrf_token %}
+            {% for choice in choices %}
+                <input type="radio" id="choice_input{{choice.id}}" name="choice_input" value="{{choice.id}}">
+                <label for="choice_input{{choice.id}}">{{choice.choice_text}}</label><br>
+            {% endfor %}
+            <br><input type="submit" value="Submit">
+        </form>
+    {% else %}
+        <h3 style="color:red;">Don't have any choices</h3>
+    {% endif %}
+
+{% endblock %}

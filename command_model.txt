@@ -24,3 +24,10 @@ python manage.py shell
 >>> c.save()
 >>> d = Choice(question = q, choice_text = "xanh", vote = 0)
 >>> d.save()
+
+// Get record
+>>> from polls.models import Question
+>>> q = Question.objects.get(pk=1)
+>>> choice_list = q.choice_set.all() // Get related records of Choice belongs to object q
+// Check
+>>> choice_list[0].choice_text
