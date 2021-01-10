@@ -1,0 +1,13 @@
+{% extends 'polls/base.html' %}
+
+{% block my-content %}
+<!--    <p><a href="{{ request.META.HTTP_REFERER }}">Back</a></p>-->
+    <p><a href="{% url 'polls_route:questions' %}">Back</a></p>
+    <h4>Add Question:</h4>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ f }}
+        <input type="submit" value="Insert">
+    </form>
+
+{% endblock %}
