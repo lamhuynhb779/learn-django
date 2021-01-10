@@ -20,3 +20,11 @@
     padding: 8px;
     background-color: #dddddd;
 }
+
+.mail-item {
+    display: block;
+}
+
+#question-text {
+    color: blue;
+}
