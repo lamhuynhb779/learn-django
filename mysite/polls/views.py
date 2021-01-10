@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Question, Choice
+# Import Question Form
+from .forms import QuestionForm
 
 # Create your views here.
 
@@ -67,3 +69,19 @@ def showChoices(request, question_id):
     question = Question.objects.get(pk=question_id)
     choice_list = question.choice_set.all()
     return render(request, "polls/choices.html", {"question": question, "choices": choice_list})
+
+
+# Model Form
+def addQuestion(req):
+    # return HttpResponse("Add Question")
+    question_form = QuestionForm()
+
+    if req.method == "POST":
+        add_question_form = QuestionForm(req.POST)
+        if add_question_form.is_valid():
+            add_question_form.save()
+            return HttpResponse("Insert success!!!")
+        else:
+            return HttpResponse("Validate failure!!!")
+
+    return render(req, "polls/add_question.html", {'f': question_form})

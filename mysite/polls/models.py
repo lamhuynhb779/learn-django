@@ -1,11 +1,12 @@
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 
 
 class Question(models.Model):
-    question_text = models.CharField(max_length=200)
-    time_public = models.DateTimeField()
+    question_text = models.CharField(max_length=200, blank=False, null=False)
+    time_public = models.DateTimeField(default=timezone.datetime.now())
 
 
 class Choice(models.Model):

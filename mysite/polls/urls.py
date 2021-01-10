@@ -10,4 +10,8 @@ urlpatterns = [
     path('questions/<int:question_id>', views.answerForQuestion, name="answer_question"),
     path('questions/save', views.saveAnswer, name="save_answer"),
     path('choices/<int:question_id>', views.showChoices, name="choices"),
+
+    # Model Form
+    path('questions/add', views.addQuestion, name="add_question"),
+
 ]
