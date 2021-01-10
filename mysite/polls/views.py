@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from .models import Question, Choice
 # Import Question Form
-from .forms import QuestionForm
+from .forms import QuestionForm, SendMail
 
 # Create your views here.
 
@@ -10,7 +10,7 @@ from .forms import QuestionForm
 def index(req):
     # return HttpResponse("Hello cac ban!!!")
     my_name = 'Lam Huynh'
-    info = ["25 years old", "backend developer", "Love technologies"]
+    info = ["backend developer", "Love technologies"]
     return render(req, "polls/index.html", {"name": my_name, "personal": info})
 
 
@@ -84,4 +84,16 @@ def addQuestion(req):
         else:
             return HttpResponse("Validate failure!!!")
 
-    return render(req, "polls/add_question.html", {'f': question_form})
+    return render(req, "polls/add_question.html", {"f": question_form})
+
+
+# Form
+def mail(req):
+    my_mail = SendMail()
+    if req.method == "POST":
+        mail_form = SendMail(req.POST)
+        if mail_form.is_valid():
+            return HttpResponse(mail_form.cleaned_data['email'] + " was sent!!!")
+        else:
+            return HttpResponse('Data mail is invalid. Please check again!!!')
+    return render(req, "polls/mail.html", {"f": my_mail})
