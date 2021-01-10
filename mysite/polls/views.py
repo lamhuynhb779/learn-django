@@ -3,15 +3,28 @@ from django.http import HttpResponse
 from .models import Question, Choice
 # Import Question Form
 from .forms import QuestionForm, SendMail
+# Import View to use Class base view
+from django.views import View
 
 # Create your views here.
 
 
-def index(req):
-    # return HttpResponse("Hello cac ban!!!")
-    my_name = 'Lam Huynh'
-    info = ["backend developer", "Love technologies"]
-    return render(req, "polls/index.html", {"name": my_name, "personal": info})
+# Function base view
+# def index(req):
+#     # return HttpResponse("Hello cac ban!!!")
+#     my_name = 'Lam Huynh'
+#     info = ["backend developer", "Love technologies"]
+#     return render(req, "polls/index.html", {"name": my_name, "personal": info})
+
+
+# Class base view
+class Index(View):
+    # receive request method GET
+    @staticmethod
+    def get(request):
+        my_name = 'Lam Huynh'
+        info = ["backend developer", "Love technologies"]
+        return render(request, "polls/index.html", {"name": my_name, "personal": info})
 
 
 def showQuestions(req):
@@ -88,12 +101,27 @@ def addQuestion(req):
 
 
 # Form
-def mail(req):
-    my_mail = SendMail()
-    if req.method == "POST":
-        mail_form = SendMail(req.POST)
+# def mail(req):
+#     my_mail = SendMail()
+#     if req.method == "POST":
+#         mail_form = SendMail(req.POST)
+#         if mail_form.is_valid():
+#             return HttpResponse(mail_form.cleaned_data['email'] + " was sent!!!")
+#         else:
+#             return HttpResponse('Data mail is invalid. Please check again!!!')
+#     return render(req, "polls/mail.html", {"f": my_mail})
+
+
+class Mail(View):
+    @staticmethod
+    def get(request):
+        my_mail = SendMail()
+        return render(request, "polls/mail.html", {"f": my_mail})
+
+    @staticmethod
+    def post(self, request):
+        mail_form = SendMail(request.POST)
         if mail_form.is_valid():
             return HttpResponse(mail_form.cleaned_data['email'] + " was sent!!!")
         else:
             return HttpResponse('Data mail is invalid. Please check again!!!')
-    return render(req, "polls/mail.html", {"f": my_mail})
