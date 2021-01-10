@@ -13,5 +13,6 @@ urlpatterns = [
 
     # Model Form
     path('questions/add', views.addQuestion, name="add_question"),
-
+    # Form
+    path('mail', views.mail, name="send_mail"),
 ]
